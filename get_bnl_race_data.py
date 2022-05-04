@@ -128,7 +128,7 @@ def main(username, password):
 
     # Write CSV with data above
     with open("bnl_race_data_output.csv", "w") as bnlrd:
-        bnlrd.write("Client HMIS ID, Days homeless, Disability (1 = yes, 0 = no), SMI (1 = yes, 0 = no), DV (1 = yes, 0 = no), Primary Race, Ethnicity\n")
+        bnlrd.write("Client HMIS ID, Days homeless, Disability (1 = yes 0 = no), SMI (1 = yes 0 = no), DV (1 = yes 0 = no), Primary Race, Ethnicity\n")
         browser = login_hmis(username, password)
         set_eda(browser)
         # search for clients and go to bos assessment
@@ -158,7 +158,8 @@ def main(username, password):
                 if browser.find_element_by_xpath("/html/body/table[2]/tbody/tr[4]/td/table/tbody/tr/td[2]/table/tbody/tr/td/table/tbody/tr[3]/td/table/tbody/tr[2]/td/table/tbody/tr[3]/td/table/tbody/tr[2]/td/table/tbody/tr/td/table/tbody/tr[3]/td/table/tbody/tr[3]/td/table/tbody/tr[2]/td/table/tbody/tr/td/table/tbody/tr[3]/td/table/tbody/tr[1]/td/table/tbody/tr[2]/td/table/tbody/tr[3]/td/table/tbody/tr[2]/td/table/tbody/tr/td/table/tbody/tr[3]/td/table/tbody/tr[4]/td[3]/table/tbody/tr/td[3]"):
                     race = browser.find_element_by_xpath("/html/body/table[2]/tbody/tr[4]/td/table/tbody/tr/td[2]/table/tbody/tr/td/table/tbody/tr[3]/td/table/tbody/tr[2]/td/table/tbody/tr[3]/td/table/tbody/tr[2]/td/table/tbody/tr/td/table/tbody/tr[3]/td/table/tbody/tr[3]/td/table/tbody/tr[2]/td/table/tbody/tr/td/table/tbody/tr[3]/td/table/tbody/tr[1]/td/table/tbody/tr[2]/td/table/tbody/tr[3]/td/table/tbody/tr[2]/td/table/tbody/tr/td/table/tbody/tr[3]/td/table/tbody/tr[4]/td[3]/table/tbody/tr/td[3]")
                     write_race = race.text
-                    bnlrd.write(write_race)
+                    
+                    bnlrd.write(write_race.replace(",", ""))
                     print(write_race)
                     sleep(0.5)
                 # Get ethnicity
@@ -166,7 +167,7 @@ def main(username, password):
                     ethnicity = browser.find_element_by_xpath("/html/body/table[2]/tbody/tr[4]/td/table/tbody/tr/td[2]/table/tbody/tr/td/table/tbody/tr[3]/td/table/tbody/tr[2]/td/table/tbody/tr[3]/td/table/tbody/tr[2]/td/table/tbody/tr/td/table/tbody/tr[3]/td/table/tbody/tr[3]/td/table/tbody/tr[2]/td/table/tbody/tr/td/table/tbody/tr[3]/td/table/tbody/tr[1]/td/table/tbody/tr[2]/td/table/tbody/tr[3]/td/table/tbody/tr[2]/td/table/tbody/tr/td/table/tbody/tr[3]/td/table/tbody/tr[6]/td[3]/table/tbody/tr/td[3]/div")
                     write_ethnicity = ethnicity.text
                     bnlrd.write(write_ethnicity + ",")
-                    print(write_ethnicity)
+                    print(write_ethnicity.replace(",", ""))
                     sleep(1.5)
             except Exception as e:
                 print("An error occurred")

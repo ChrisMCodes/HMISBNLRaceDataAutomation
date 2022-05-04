@@ -159,7 +159,7 @@ def main(username, password):
                     race = browser.find_element_by_xpath("/html/body/table[2]/tbody/tr[4]/td/table/tbody/tr/td[2]/table/tbody/tr/td/table/tbody/tr[3]/td/table/tbody/tr[2]/td/table/tbody/tr[3]/td/table/tbody/tr[2]/td/table/tbody/tr/td/table/tbody/tr[3]/td/table/tbody/tr[3]/td/table/tbody/tr[2]/td/table/tbody/tr/td/table/tbody/tr[3]/td/table/tbody/tr[1]/td/table/tbody/tr[2]/td/table/tbody/tr[3]/td/table/tbody/tr[2]/td/table/tbody/tr/td/table/tbody/tr[3]/td/table/tbody/tr[4]/td[3]/table/tbody/tr/td[3]")
                     write_race = race.text
                     
-                    bnlrd.write(write_race.replace(",", ""))
+                    bnlrd.write(write_race.replace(",", "") + ",")
                     print(write_race)
                     sleep(0.5)
                 # Get ethnicity
